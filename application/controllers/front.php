@@ -6,6 +6,7 @@ class Front_Controller extends Base_Controller
 
     protected function loadPage($view, $data = [])
     {
+        $this->layout->nest('menu', 'front.__menu');
         $this->layout->nest('content', 'front.'.$view, $data);
     }
 

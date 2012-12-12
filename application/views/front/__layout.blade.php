@@ -8,7 +8,14 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 </head>
 <body>
-    {{ $content }}
+    <div id="menu">
+        {{ $menu }}
 
+    </div>
+
+    <div id="content">
+        {{ $content }}
+
+    </div>
 </body>
 </html>
