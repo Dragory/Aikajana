@@ -1,4 +1,4 @@
-aikajana
+Aikajana
 ========
 
 Timeline. And stuff.
