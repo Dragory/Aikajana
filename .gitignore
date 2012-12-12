@@ -35,3 +35,6 @@ dwsync.xml
 intermediate
 publish
 .idea
+
+# Database config
+/application/config/database.php
