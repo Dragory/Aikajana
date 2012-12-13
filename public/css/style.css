@@ -1,0 +1,59 @@
+.chart {
+    position: relative;
+    width: 800px;
+}
+.chart-scroll-container {
+    position: relative;
+    width: 800px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.chart-controls-left {
+    position: absolute;
+    width: 40px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #000;
+}
+.chart-controls-right {
+    position: absolute;
+    width: 40px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+}
+
+.chart-decade-container {
+    position: relative;
+    height: 60px;
+    font-size: 50px;
+}
+    .chart-decade {
+        position: absolute;
+    }
+
+.chart-year-container {
+    position: relative;
+    height: 30px;
+    font-size: 20px;
+}
+    .chart-year {
+        position: absolute;
+    }
+
+.chart-event-container {
+    position: relative;
+    padding: 8px 0;
+
+    background: url(../images/chart-bg-event-container.png) top left;
+}
+    .chart-event-padding {
+        position: relative;
+    }
+        .chart-event {
+            position: absolute;
+            background-color: #baddf5;
+        }

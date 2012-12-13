@@ -33,6 +33,7 @@
 */
 
 Route::get('/', ['as' => 'index', 'uses' => 'front@index']);
+Route::get('chart', ['as' => 'chart', 'uses' => 'front@chart']);
 
 /*
 |--------------------------------------------------------------------------
