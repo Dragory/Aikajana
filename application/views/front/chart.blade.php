@@ -1,6 +1,9 @@
 <?php
     $chartDrawer = new ChartDrawer(1900, 2012);
-    $chartDrawer->setEvents($ordered);
+
+    $chartDrawer->setEvents($events);
+    $chartDrawer->setGroups($groups);
+
     echo $chartDrawer->getChartHtml();
 
     /*$groupMult = 0;
@@ -14,7 +17,7 @@
 
 <?php
 
-var_dump($chart);
+/*var_dump($chart);
 var_dump($groups);
 var_dump($events);
-var_dump($ordered);
+var_dump($ordered);*/

@@ -8,6 +8,10 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
 </head>
 <body>
+    <script type="text/javascript">
+        var charts = [];
+    </script>
+
     <div id="menu">
         {{ $menu }}
 
@@ -17,5 +21,9 @@
         {{ $content }}
 
     </div>
+
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/chart.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
 </body>
 </html>

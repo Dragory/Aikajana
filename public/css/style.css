@@ -1,5 +1,8 @@
 .chart {
     position: relative;
+}
+.chart-controls-container {
+    position: relative;
     width: 800px;
 }
 .chart-scroll-container {
@@ -9,21 +12,30 @@
     overflow-y: hidden;
 }
 
+.chart-info {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
 .chart-controls-left {
     position: absolute;
-    width: 40px;
-    top: 0;
+    width: 60px;
+    top: 90px;
     left: 0;
     bottom: 0;
-    background-color: #000;
+    background: url(../images/chart-bg-controls-left.png) repeat-y;
+    z-index: 100;
 }
 .chart-controls-right {
     position: absolute;
-    width: 40px;
+    width: 60px;
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: #000;
+    background: url(../images/chart-bg-controls-right.png) repeat-y;
+    z-index: 100;
 }
 
 .chart-decade-container {
@@ -49,6 +61,8 @@
     padding: 8px 0;
 
     background: url(../images/chart-bg-event-container.png) top left;
+
+    overflow: hidden;
 }
     .chart-event-padding {
         position: relative;
@@ -57,3 +71,8 @@
             position: absolute;
             background-color: #baddf5;
         }
+
+.chart-month-container {
+    height: 10px;
+    background: url(../images/chart-bg-month-container.png);
+}

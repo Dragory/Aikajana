@@ -6,7 +6,11 @@ class ChartDrawer
             $startYearDatetime, $endYearDatetime,                                 // Datetime objects for the start and end years
             $monthWidth = 10, $yearWidth, $decadeWidth, $fullWidth,               // Different widths for the chart
             $lineHeight = 20, $linePadding = 4, $groupPadding = 100, $fullHeight, // Different heights for the chart
-            $events; // An array containing the chart's events
+            
+            $events = [], $groups = [], $ordered = [], // Arrays containing the chart's events and groups.
+                                                       // "$ordered" is an array that contains the references to the events grouped by groups.
+
+            $initialized = false; // Have we already initialized the charts' JS?
 
     private static $chartNum = 0;
 
@@ -64,7 +68,22 @@ class ChartDrawer
 
     public function setEvents(&$events)
     {
+        // Save the events
         $this->events = &$events;
+
+        // And also have a sorted by groups version available
+        $ordered = [];
+        foreach ($this->events as &$event)
+        {
+            if (!isset($ordered[$event->id_group])) $ordered[$event->id_group] = [];
+            $ordered[$event->id_group][] = $event;
+        }
+        $this->ordered = $ordered;
+    }
+
+    public function setGroups(&$groups)
+    {
+        $this->groups = &$groups;
     }
 
     /**
@@ -79,6 +98,8 @@ class ChartDrawer
         $width += $difference->m * $this->monthWidth;
         $width += $difference->d * ($this->monthWidth/31);
 
+        if ($difference->invert) $width *= -1;
+
         return floor($width);
     }
 
@@ -89,10 +110,10 @@ class ChartDrawer
      */
     public function calculateEventDimensions()
     {
-        if (!$this->events) return;
+        if (!$this->ordered) return;
 
         $groupMult = 0;
-        foreach ($this->events as $group => &$events)
+        foreach ($this->ordered as $group => &$events)
         {
             foreach ($events as &$event)
             {
@@ -159,30 +180,42 @@ class ChartDrawer
      */
     public function getEventHtml()
     {
-        if (!$this->events) return null;
+        if (!$this->ordered) return null;
 
         $return = '';
 
-        foreach ($this->events as $group => &$events)
+        foreach ($this->events as &$event)
         {
-            foreach ($events as &$event)
-            {
-                $return .= '<div class="chart-event"'.
-                            ' data-id="'.$event->id_event.'"'.
-                            ' style="left: '.$event->event_px_x.'px;
-                                     top: '.$event->event_px_y.'px;
-                                     width: '.$event->event_px_width.'px;
-                                     height: '.$event->event_px_height.'px'.
-                              '"'.
-                           '>'.
-                            $event->event_name.
-                           '</div>';
-
-                $return .= '<!--'.print_r($event->event_datetime_start->diff($event->event_datetime_end), true).'-->';
-            }
+            $return .= '<div class="chart-event"'.
+                        ' data-id-group="'.$event->id_group.'"'.
+                        ' data-id-event="'.$event->id_event.'"'.
+                        ' style="left: '.  $event->event_px_x.'px;'.
+                                'top: '.   $event->event_px_y.'px;'.
+                                'width: '. $event->event_px_width.'px;'.
+                                'height: '.$event->event_px_height.'px'.
+                          '"'.
+                       '>'.
+                        $event->event_name.
+                       '</div>';
         }
 
         return $return;
+    }
+
+    /**
+     * Gets the HTML and JavaScript needed for the charts'
+     * JavaScript objects to function. This should be requested
+     * ONCE per page. That's why it's also limited at that, ha.
+     * Per instance limitation, though.
+     */
+    protected function getInitializationHtml()
+    {
+        return null;
+        if ($this->initialized) return null;
+
+        return '<script type="text/javascript">'.
+                    'var charts = [];'.
+               '</script>';
     }
 
     /**
@@ -196,20 +229,29 @@ class ChartDrawer
         $chartNum = $this->getChartNum();
 
         $return = '';
+
+        if (!$this->initialized) $return .= $this->getInitializationHtml();
+
         $return .= '<div class="chart" id="chart-'.$chartNum.'">'.
-                        '<div class="chart-controls-left"></div>'.
-                        '<div class="chart-controls-right"></div>'.
-                        '<div class="chart-scroll-container">'.
-                            '<div class="chart-content" style="width: '.$this->fullWidth.'px">'.
-                                '<div class="chart-decade-container">'. $this->getDecadeHtml().'</div>'.
-                                '<div class="chart-year-container">'.   $this->getYearHtml().'</div>'.
-                                '<div class="chart-event-container" style="width: '.$this->fullWidth.'px; height: '.$this->fullHeight.'px">'.
-                                    '<div class="chart-event-padding">'.$this->getEventHtml().'</div>'.
+                        '<div class="chart-controls-container">'.
+                            '<div class="chart-controls-left"></div>'.
+                            '<div class="chart-controls-right"></div>'.
+                            '<div class="chart-scroll-container">'.
+                                '<div class="chart-content" style="width: '.$this->fullWidth.'px">'.
+                                    '<div class="chart-decade-container">'. $this->getDecadeHtml().'</div>'.
+                                    '<div class="chart-year-container">'.   $this->getYearHtml().'</div>'.
+                                    '<div class="chart-event-container" style="width: '.$this->fullWidth.'px; height: '.$this->fullHeight.'px">'.
+                                        '<div class="chart-event-padding">'.$this->getEventHtml().'</div>'.
+                                    '</div>'.
+                                    '<div class="chart-month-container" style="width: '.$this->fullWidth.'px"></div>'.
                                 '</div>'.
-                                '<div class="chart-month-container" style="width: '.$this->fullWidth.'px"></div>'.
                             '</div>'.
                         '</div>'.
-                   '</div>';
+                        '<div class="chart-info"></div>'.
+                   '</div>'.
+                   '<script type="text/javascript">'.
+                        'charts.push('.json_encode(['id' => 'chart-'.$chartNum, 'events' => $this->events, 'groups' => $this->groups]).');'.
+                   '</script>';
 
         return $return;
     }
