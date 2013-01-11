@@ -5,7 +5,7 @@
     </p>
 
     <h2>{{ __('admin.charts_charts') }}</h2>
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered table-charts">
         <thead>
             <tr>
                 <th>{{ __('admin.charts_header_name') }}</th>

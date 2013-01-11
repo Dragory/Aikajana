@@ -15,7 +15,7 @@
     {{ Form::end() }}
 
     <h2>{{ __('admin.chart_groups') }}</h2>
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered table-charts">
         <thead>
             <tr>
                 <th>{{ __('admin.chart_groups_header_name') }}</th>

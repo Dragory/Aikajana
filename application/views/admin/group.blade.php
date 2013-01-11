@@ -16,7 +16,7 @@
     {{ Form::end() }}
 
     <h2>{{ __('admin.group_events') }}</h2>
-    <table class="table table-striped table-bordered">
+    <table class="table table-striped table-bordered table-charts">
         <thead>
             <tr>
                 <th>{{ __('admin.group_events_header_name') }}</th>
@@ -35,7 +35,7 @@
 
         echo '<tr>'.
                 '<td><a href="'.$editUrl.'">'.$event->event_name.'</a></td>'.
-                '<td><div style="width: 32px; height: 32px; border-radius: 4px; background-color: #'.$event->event_colour.'"></div></td>'.
+                '<td><div style="width: 32px; height: 32px; border-radius: 4px; background-color: '.$event->event_colour.'"></div></td>'.
                 '<td>'.date('d.m.Y', strtotime($event->event_time_start)).'</td>'.
                 '<td>'.date('d.m.Y', strtotime($event->event_time_end)).'</td>'.
                 '<td>'.
