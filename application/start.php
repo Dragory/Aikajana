@@ -171,3 +171,10 @@ if ( ! Request::cli() and Config::get('session.driver') !== '')
 {
 	Session::load();
 }
+
+/**
+ * Helpers
+ */
+require_once(path('app').'/helpers/password.php');
+require_once(path('app').'/helpers/formmacros.php');
+require_once(path('app').'/helpers/generic.php');

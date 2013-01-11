@@ -7,8 +7,8 @@ class ChartDrawer
             $monthWidth = 10, $yearWidth, $decadeWidth, $fullWidth,               // Different widths for the chart
             $lineHeight = 20, $linePadding = 4, $groupPadding = 100, $fullHeight, // Different heights for the chart
             
-            $events = [], $groups = [], $ordered = [], // Arrays containing the chart's events and groups.
-                                                       // "$ordered" is an array that contains the references to the events grouped by groups.
+            $events = [], $groups = [], $groupsById = [], $ordered = [], // Arrays containing the chart's events and groups.
+                                                                         // "$ordered" is an array that contains the references to the events grouped by groups.
 
             $initialized = false; // Have we already initialized the charts' JS?
 
@@ -84,6 +84,12 @@ class ChartDrawer
     public function setGroups(&$groups)
     {
         $this->groups = &$groups;
+        $this->groupsById = [];
+
+        foreach ($this->groups as &$group)
+        {
+            $this->groupsById[$group->id_group] = $group;
+        }
     }
 
     /**
@@ -186,13 +192,17 @@ class ChartDrawer
 
         foreach ($this->events as &$event)
         {
+            if ($event->event_colour_inherit == 1)
+                $event->event_colour = $this->groupsById[$event->id_group]->group_colour;
+
             $return .= '<div class="chart-event"'.
                         ' data-id-group="'.$event->id_group.'"'.
                         ' data-id-event="'.$event->id_event.'"'.
                         ' style="left: '.  $event->event_px_x.'px;'.
                                 'top: '.   $event->event_px_y.'px;'.
                                 'width: '. $event->event_px_width.'px;'.
-                                'height: '.$event->event_px_height.'px'.
+                                'height: '.$event->event_px_height.'px;'.
+                                'background-color: '.$event->event_colour.';'.
                           '"'.
                        '>'.
                         $event->event_name.

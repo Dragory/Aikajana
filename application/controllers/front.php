@@ -2,7 +2,7 @@
 
 class Front_Controller extends Base_Controller
 {
-    public $layout = 'front.__layout';
+    public $layout = 'layouts.front';
 
     protected function loadPage($view, $data = [])
     {
@@ -15,15 +15,25 @@ class Front_Controller extends Base_Controller
         $this->loadPage('index');
     }
 
-    public function action_chart()
+    public function action_chart($chart_url)
     {
-        $chart  = new Chart;
-        $info   = $chart->getChart(1);
-        $groups = $chart->getGroups(1);
-        $events = $chart->getEvents(1);
+        $chartModel  = new Chart;
 
-        $ordered = $chart->orderEvents($events);
+        // Get the requested chart and show an error
+        // if it's not found.
+        $chart  = $chartModel->getChartByUrl($chart_url);
 
-        $this->loadPage('chart', ['chart' => $info, 'groups' => $groups, 'events' => $events, 'ordered' => $ordered]);
+        if (!$chart) return Response::error('404');
+
+        // Get the chart's groups and events
+        $groups = $chartModel->getGroupsByChartId($chart->id_chart);
+        $events = $chartModel->getEventsByChartId($chart->id_chart);
+
+        // Calculate the events' depth and place them in an array
+        // keyed by the events' groups' IDs.
+        $ordered = $chartModel->orderEvents($events);
+
+        // Show the chart page
+        $this->loadPage('chart', ['chart' => $chart, 'groups' => $groups, 'events' => $events, 'ordered' => $ordered]);
     }
 }

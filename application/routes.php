@@ -33,7 +33,46 @@
 */
 
 Route::get('/', ['as' => 'index', 'uses' => 'front@index']);
-Route::get('chart', ['as' => 'chart', 'uses' => 'front@chart']);
+Route::get('/chart/(:any)', ['as' => 'chart', 'uses' => 'front@chart']);
+
+/**
+ * Charts
+ * -> The chart's groups
+ *    -> The group's events
+ */
+Route::get('/admin',       ['as' => 'admin_login',  'uses' => 'admin@login']);
+Route::post('/logout_post',       ['as' => 'admin_logout',  'uses' => 'admin@logout', 'before' => 'csrf']);
+Route::post('/login_post', ['as' => 'admin_login_post', 'uses' => 'admin@login_post', 'before' => 'csrf']);
+
+// Admin index or chart listing page
+Route::get('/admin/charts', ['as' => 'admin_charts', 'uses' => 'admin@charts']);
+
+// Charts
+Route::get('/admin/chart/(:any)',            ['as' => 'admin_chart', 'uses' => 'admin@chart']);
+Route::post('/admin/chart/(:any)/save_post', ['as' => 'admin_chart_save_post', 'uses' => 'admin@chart_save_post', 'before' => 'csrf']);
+
+Route::get('/admin/chart_add',       ['as' => 'admin_chart_add', 'uses' => 'admin@chart_add']);
+Route::post('/admin/chart_add_post', ['as' => 'admin_chart_add_post', 'uses' => 'admin@chart_add_post', 'before' => 'csrf']);
+
+Route::post('/admin/chart/(:any)/delete', ['as' => 'admin_chart_delete', 'uses' => 'admin@chart_delete', 'before' => 'csrf']);
+
+// Groups
+Route::get('/admin/chart/(:any)/(:num)',            ['as' => 'admin_group', 'uses' => 'admin@group']);
+Route::post('/admin/chart/(:any)/(:num)/save_post', ['as' => 'admin_group_save_post', 'uses' => 'admin@group_save_post', 'before' => 'csrf']);
+
+Route::get('/admin/chart/(:any)/add',       ['as' => 'admin_group_add', 'uses' => 'admin@group_add']);
+Route::post('/admin/chart/(:any)/add_post', ['as' => 'admin_group_add_post', 'uses' => 'admin@group_add_post', 'before' => 'csrf']);
+
+Route::post('/admin/chart/(:any)/(:num)/delete', ['as' => 'admin_group_delete', 'uses' => 'admin@group_delete', 'before' => 'csrf']);
+
+// Events
+Route::get('/admin/chart/(:any)/(:num)/(:num)',            ['as' => 'admin_event', 'uses' => 'admin@event']);
+Route::post('/admin/chart/(:any)/(:num)/(:num)/save_post', ['as' => 'admin_event_save_post', 'uses' => 'admin@event_save_post', 'before' => 'csrf']);
+
+Route::get('/admin/chart/(:any)/(:num)/add',        ['as' => 'admin_event_add', 'uses' => 'admin@event_add']);
+Route::post('/admin/chart/(:any)/(:num)/add_post',  ['as' => 'admin_event_add_post', 'uses' => 'admin@event_add_post', 'before' => 'csrf']);
+
+Route::post('/admin/chart/(:any)/(:num)/(:num)/delete', ['as' => 'admin_event_delete', 'uses' => 'admin@event_delete', 'before' => 'csrf']);
 
 /*
 |--------------------------------------------------------------------------

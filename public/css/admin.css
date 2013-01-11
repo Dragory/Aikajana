@@ -1,0 +1,35 @@
+body {
+    background-color: #ddd;
+}
+
+p {
+    margin: 0 0 20px;
+}
+
+#wrap {
+    width: 960px;
+    margin: 24px auto;
+}
+
+#login-area {
+    width: 240px;
+    margin: 24px auto;
+    background-color: #fff;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+#login-area form {
+    margin: 0;
+}
+
+.content-area {
+    background-color: #fff;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.breadcrumb form {
+    margin: 0;
+}
