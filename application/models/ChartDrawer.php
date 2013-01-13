@@ -2,35 +2,46 @@
 
 class ChartDrawer
 {
-    private $startYear, $endYear, $totalYears,                                    // Start and end year plus their difference
-            $startYearDatetime, $endYearDatetime,                                 // Datetime objects for the start and end years
-            $monthWidth = 10, $yearWidth, $decadeWidth, $fullWidth,               // Different widths for the chart
-            $lineHeight = 20, $linePadding = 4, $groupPadding = 100, $fullHeight, // Different heights for the chart
-            
-            $events = [], $groups = [], $groupsById = [], $ordered = [], // Arrays containing the chart's events and groups.
-                                                                         // "$ordered" is an array that contains the references to the events grouped by groups.
+            // The start and end of the chart
+    private $startDatetime, $endDatetime,
 
-            $initialized = false; // Have we already initialized the charts' JS?
+            // Widths for different intervals. The month width is used as a base for the others.
+            $monthWidth = 10, $yearWidth, $decadeWidth,
+
+            // The total width and height for the chart
+            $chartWidth, $chartHeight,
+
+            // Line height, line padding and the padding between two groups.
+            $lineHeight = 20, $linePadding = 4, $groupPadding = 100,
+
+            // Arrays containing the groups and events of the chart
+            $events = [], $groups = [], $groupsById = [], $eventsByGroupId = [];
 
     private static $chartNum = 0;
 
-    public function __construct($start, $end)
+    public function __construct($startTime, $endTime)
     {
-        $this->startYear = intval($start);
-        $this->endYear   = intval($end) + 1; // We add one year so when you have "1900-2010" the code sees it as "1.1.1900-1.1.2011" i.e. shows the full years
+        // Save the start and end times
+        $this->startDatetime = new DateTime($startTime);
+        $this->endDatetime   = new DateTime($endTime);
 
-        $this->startYearDatetime = new DateTime($this->startYear.'-01-01');
-        $this->endYearDatetime   = new DateTime($this->endYear.'-01-01');
+        // Calculate the total number of years between that period
+        $difference = $this->startDatetime->diff($this->endDatetime);
 
-        if ($this->endYear < $this->startYear) return false; // Invalid date range
+        // If the chart starts after it ends, return.
+        if ($difference->invert) return false;
 
+        // Calculate different required widths according to the month width
         $this->yearWidth   = $this->monthWidth * 12;
         $this->decadeWidth = $this->yearWidth * 10;
 
-        $this->totalYears = $this->endYear - $this->startYear;
-        $this->fullWidth  = $this->totalYears * $this->yearWidth;
+        // Calculate the full width of the chart by using the number of
+        // total months and the width of a single month defined above.
+        $this->chartWidth = ($difference->y * 12 + $difference->m) * $this->monthWidth;
 
-        $this->fullHeight = 0;
+        // Start at 0 full height. This will raise according
+        // to the events later on in the code.
+        $this->chartHeight = 0;
     }
 
     // Gets a unique chart number that increases each time you get it.
@@ -56,15 +67,15 @@ class ChartDrawer
         $this->lineHeight  = intval($height);
     }
 
-    public function setLinePadding($height)
+    public function setLinePadding($padding)
     {
-        $this->linePadding  = intval($height);
+        $this->linePadding  = intval($padding);
     }
 
-    public function setGroupPadding($height)
-    {
-        $this->groupPadding  = intval($height);
-    }
+    // public function setGroupPadding($padding)
+    // {
+    //     $this->groupPadding  = intval($padding);
+    // }
 
     public function setEvents(&$events)
     {
@@ -72,13 +83,13 @@ class ChartDrawer
         $this->events = &$events;
 
         // And also have a sorted by groups version available
-        $ordered = [];
+        $eventsByGroupId = [];
         foreach ($this->events as &$event)
         {
-            if (!isset($ordered[$event->id_group])) $ordered[$event->id_group] = [];
-            $ordered[$event->id_group][] = $event;
+            if (!isset($eventsByGroupId[$event->id_group])) $eventsByGroupId[$event->id_group] = [];
+            $eventsByGroupId[$event->id_group][] = $event;
         }
-        $this->ordered = $ordered;
+        $this->eventsByGroupId = $eventsByGroupId;
     }
 
     public function setGroups(&$groups)
@@ -110,17 +121,28 @@ class ChartDrawer
     }
 
     /**
-     * Calculate the events' dimensions and, at the same time,
-     * find out and set the chart's maximum height (i.e. the bottom
-     * edge of the bottommost event).
+     * Calculate the position and size of each event according to their
+     * start time, end time and depth. Depth is calculated in the Chart model.
+     * Also sets the chart's maximum height,
+     * which is the bottom of the "deepest" event.
+     * @return none Modifies the events directly.
      */
     public function calculateEventDimensions()
     {
-        if (!$this->ordered) return;
+        if (!$this->eventsByGroupId) return;
 
-        $groupMult = 0;
-        foreach ($this->ordered as $group => &$events)
+        foreach ($this->eventsByGroupId as $group => &$events)
         {
+            // Use the current chart height as defined
+            // by the previous groups as a baseline to
+            // add the group padding to. This way different
+            // groups won't intersect with each other.
+            if ($this->chartHeight == 0)
+                $groupHeight = 0;
+            else
+                $groupHeight = $this->chartHeight + $this->groupPadding;
+
+            // Loop through the events of this group
             foreach ($events as &$event)
             {
                 // Calculate the width of this event
@@ -128,11 +150,11 @@ class ChartDrawer
                 $thisWidth = $this->getDatetimeDifferenceWidth($timeDifferenceInEvent);
 
                 // Calculate the X coordinate of this event
-                $timeDifferenceToStart = $this->startYearDatetime->diff($event->event_datetime_start);
+                $timeDifferenceToStart = $this->startDatetime->diff($event->event_datetime_start);
                 $thisX = $this->getDatetimeDifferenceWidth($timeDifferenceToStart);
 
                 // Calculate the Y coordinate of this event
-                $thisY = $groupMult * $this->groupPadding;
+                $thisY = $groupHeight;
                 $thisY += $event->depth * ($this->lineHeight + $this->linePadding);
 
                 // Set the values in the event's data
@@ -142,46 +164,58 @@ class ChartDrawer
                 $event->event_px_y = $thisY;
 
                 // See if we got a new maximum height for the chart and set that
-                $this->fullHeight = max($this->fullHeight, $thisY + $this->lineHeight);
+                $this->chartHeight = max($this->chartHeight, $thisY + $this->lineHeight);
             }
-
-            $groupMult++;
         }
     }
 
     /**
-     * Gets the HTML for the decades display
-     */
-    public function getDecadeHtml()
-    {
-        $return = '';
-        for ($year = $this->startYear; $year < $this->endYear; $year++)
-        {
-            if ($year % 10 != 0) continue;
-
-            if ($year % 100 == 0) $decadeClass = 'chart-decade-large';
-            else $decadeClass = 'chart-decade-small';
-
-            $yearsFromStart = $year - $this->startYear;
-            $return .= '<div class="chart-decade '.$decadeClass.'" style="left: '.($yearsFromStart * $this->yearWidth).'px">'.$year.'-luku</div>';
-        }
-
-        return $return;
-    }
-
-    /**
-     * Gets the HTML for the years display
+     * Creates the HTML needed for the
+     * decades and years above the chart.
+     * @return array An array containing the decade HTML at [0] and the year HTML at [1].
      */
     public function getYearHtml()
     {
-        $return = '';
-        for ($year = $this->startYear; $year < $this->endYear; $year++)
+        $decadeHtml = '';
+        $yearHtml = '';
+
+        // Start at the next full year on the chart,
+        // i.e. the 1st of January on the next year on the chart.
+        $chartNextFullYear = intval($this->startDatetime->format('Y')) + 1;
+        $yearListingStartDatetime = DateTime::createFromFormat('Y-m-d', $chartNextFullYear.'-01-01');
+
+        // Loop through every year from the start defined above to the end of the chart
+        $yearInterval = DateInterval::createFromDateString('1 year');
+        $timePeriod = new DatePeriod($this->startDatetime, $yearInterval, $this->endDatetime);
+
+        foreach ($timePeriod as $thisTime)
         {
-            $yearsFromStart = $year - $this->startYear;
-            $return .= '<div class="chart-year" style="left: '.($yearsFromStart * $this->yearWidth).'px">'.$year.'</div>';
+            list($thisMonth, $thisYear) = explode('-', $thisTime->format('m-Y'));
+
+            // Make sure we're at the start of a year...
+            if ($thisMonth != 1) continue;
+
+            // Distance from the start of the chart
+            $diffFromStart = $this->startDatetime->diff($thisTime);
+            $leftFromStart = $this->getDatetimeDifferenceWidth($diffFromStart);
+
+            // Year HTML
+            $yearHtml .= '<div class="chart-year" style="left: '.$leftFromStart.'px">'.$thisYear.'</div>';
+
+            // Decade HTML
+            if ($thisYear % 10 == 0)
+            {
+                // Different sizes for centuries
+                if ($thisYear % 100 == 0) $decadeClass = 'chart-decade-large';
+                else $decadeClass = 'chart-decade-small';
+
+                $decadeHtml .= '<div class="chart-decade '.$decadeClass.'" style="left: '.($leftFromStart).'px">'.
+                                   $thisYear.'-luku'.
+                               '</div>';
+            }
         }
 
-        return $return;
+        return [$decadeHtml, $yearHtml];
     }
 
     /**
@@ -189,7 +223,7 @@ class ChartDrawer
      */
     public function getEventHtml()
     {
-        if (!$this->ordered) return null;
+        if (!$this->eventsByGroupId) return null;
 
         $return = '';
 
@@ -298,20 +332,22 @@ class ChartDrawer
 
         $return = '';
 
-        if (!$this->initialized) $return .= $this->getInitializationHtml();
+        // if (!$this->initialized) $return .= $this->getInitializationHtml();
+
+        list($decadeHtml, $yearHtml) = $this->getYearHtml();
 
         $return .= '<div class="chart" id="chart-'.$chartNum.'">'.
                         '<div class="chart-controls-container">'.
                             '<div class="chart-controls-left"></div>'.
                             '<div class="chart-controls-right"></div>'.
                             '<div class="chart-scroll-container">'.
-                                '<div class="chart-content" style="width: '.$this->fullWidth.'px">'.
-                                    '<div class="chart-decade-container">'. $this->getDecadeHtml().'</div>'.
-                                    '<div class="chart-year-container">'.   $this->getYearHtml().'</div>'.
-                                    '<div class="chart-event-container" style="width: '.$this->fullWidth.'px; height: '.$this->fullHeight.'px">'.
+                                '<div class="chart-content" style="width: '.$this->chartWidth.'px">'.
+                                    '<div class="chart-decade-container">'. $decadeHtml.'</div>'.
+                                    '<div class="chart-year-container">'.   $yearHtml.'</div>'.
+                                    '<div class="chart-event-container" style="width: '.$this->chartWidth.'px; height: '.$this->chartHeight.'px">'.
                                         '<div class="chart-event-padding">'.$this->getEventHtml().'</div>'.
                                     '</div>'.
-                                    '<div class="chart-month-container" style="width: '.$this->fullWidth.'px"></div>'.
+                                    '<div class="chart-month-container" style="width: '.$this->chartWidth.'px"></div>'.
                                 '</div>'.
                             '</div>'.
                         '</div>'.

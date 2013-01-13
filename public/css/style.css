@@ -96,6 +96,9 @@ h1 {
 
     border-bottom: 3px solid #808080;
 }
+    .chart-content {
+        overflow: hidden;
+    }
 
 .chart-info {
     display: none;

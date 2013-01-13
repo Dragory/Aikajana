@@ -1,6 +1,6 @@
 <h1>{{ $chart->chart_name }}</h1>
 <?php
-    $chartDrawer = new ChartDrawer(1900, 2012);
+    $chartDrawer = new ChartDrawer($chart->chart_time_start, $chart->chart_time_end);
 
     $chartDrawer->setEvents($events);
     $chartDrawer->setGroups($groups);

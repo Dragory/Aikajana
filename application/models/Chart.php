@@ -238,13 +238,13 @@ class Chart
             $handledEvents = [];
 
             // Use the "current" maximum depth for this group
-            $groupDepth = $maxDepth;
+            // $groupDepth = $maxDepth;
 
             // Loop through the group's events
             foreach ($events as &$event)
             {
                 // Get on this group's depth
-                $event->depth += $groupDepth;
+                // $event->depth += $groupDepth;
 
                 // Because we may sometimes check "deeper" ones
                 // before the higher ones (which then gets ignored
@@ -264,18 +264,9 @@ class Chart
                     // If this target ends before our event starts, skip
                     if ($event->event_datetime_start > $target->event_datetime_end) continue;
 
-                    // If we're at a different depth,
-                    // mark this event in the taken depths.
-                    if ($target->depth != $event->depth)
-                    {
-                        $takenDepths[] = $target->depth;
-                    }
-                    // Otherwise we're intersecting at this depth
-                    // and need to go deeper.
-                    else
-                    {
-                        $event->depth = $target->depth + 1;
-                    }
+                    // Alright, we're intersecting at some depth.
+                    // Mark that depth as "taken".
+                    $takenDepths[] = $target->depth;
                 }
 
                 // Now check the taken depths
@@ -284,7 +275,7 @@ class Chart
                     $event->depth++;
                 }
 
-                $maxDepth = max($maxDepth, $event->depth);
+                // $maxDepth = max($maxDepth, $event->depth);
 
                 // Add a reference to our event to
                 // the array of handled events.
@@ -293,7 +284,7 @@ class Chart
 
             // Add a few lines to the max depth to push
             // the next group down a bit.
-            $maxDepth += 0;
+            // $maxDepth += 0;
         }
 
         return $eventsPerGroup;
