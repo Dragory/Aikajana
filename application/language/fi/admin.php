@@ -20,10 +20,13 @@ return [
     'charts_delete' => 'Poista',
     'charts_add_new' => 'Luo uusi kuvio',
 
+    'chart_add_heading' => 'Luo uusi kuvio',
+    'chart_add_description' => 'Alta voit luoda uuden kuvion.',
     'chart_description' => 'Kuvion tiedot ja ryhmät.',
 
     'chart_info' => 'Kuvion tiedot',
     'chart_save' => 'Tallenna',
+    'chart_add' => 'Luo',
 
     'chart_groups' => 'Kuvion ryhmät',
     'chart_groups_header_name' => 'Nimi',
@@ -33,9 +36,12 @@ return [
     'chart_group_delete' => 'Poista',
     'chart_add_group' => 'Luo uusi ryhmä',
 
+    'group_add_heading' => 'Luo uusi ryhmä',
+    'group_add_description' => 'Alta voit luoda uuden ryhmän.',
     'group_description' => 'Ryhmän tiedot ja tapahtumat.',
     'group_info' => 'Ryhmän tiedot',
     'group_save' => 'Tallenna',
+    'group_add' => 'Luo',
 
     'group_colours' => 'Värit',
     'group_colours_header_name' => 'Nimi',
@@ -45,6 +51,7 @@ return [
     'group_colours_header_actions' => 'Toiminnot',
     'group_colour_edit' => 'Muokkaa',
     'group_colour_delete' => 'Poista',
+    'group_add_colour' => 'Lisää väri',
 
     'group_events' => 'Tapahtumat',
     'group_events_header_name' => 'Nimi',
@@ -55,4 +62,15 @@ return [
     'group_event_edit' => 'Muokkaa',
     'group_event_delete' => 'Poista',
     'group_add_event' => 'Luo uusi tapahtuma',
+
+    'colour_add_heading' => 'Lisää väri',
+    'colour_add_description' => 'Alta voit lisätä uuden värin.',
+    'colour_info' => 'Värin tiedot',
+    'colour_add' => 'Lisää',
+
+    'event_add_heading' => 'Luo uusi tapahtuma',
+    'event_add_description' => 'Alta voit lisätä uuden tapahtuman.',
+    'event_description' => 'Alta näet tapahtuman tiedot ja voit muokata niitä.',
+    'event_info' => 'Tapahtuman tiedot',
+    'event_add' => 'Luo',
 ];
