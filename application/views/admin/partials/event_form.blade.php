@@ -17,7 +17,7 @@
         echo '<option'.
                 ' class="option-colour"'.
                 ' style="background-color: '.$colour->colour_hex.';"'.
-                ($colour->id_colour == $event->id_colour ? ' selected="selected"' : '').
+                ($colour->id_colour == \GenericHelpers\objectVal($event, 'id_colour') ? ' selected="selected"' : '').
                 ' value="'.$colour->id_colour.'">'.
                 $colour->colour_name.
              '</option>';

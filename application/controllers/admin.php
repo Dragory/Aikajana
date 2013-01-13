@@ -272,6 +272,7 @@ class Admin_Controller extends ActionFilter\Filter_Controller
         $chartModel = new Chart;
         $group = $chartModel->getGroupById($id_group);
         $chart = $chartModel->getChartById($group->id_chart);
+        $colours = $chartModel->getColoursByGroupId($group->id_group);
 
         $this->setBreadcrumb([
             [URL::to_route('admin_charts'), __('admin.charts_heading')],
@@ -280,7 +281,7 @@ class Admin_Controller extends ActionFilter\Filter_Controller
             [null, 'Lisää tapahtuma']
         ]);
 
-        $this->loadPage('event_add', ['chart' => $chart, 'group' => $group]);
+        $this->loadPage('event_add', ['chart' => $chart, 'group' => $group, 'colours' => $colours]);
     }
 
     public function action_event_add_post($id_group)
