@@ -313,6 +313,17 @@ Chart.prototype.showInfo = function(id_event)
                           '</tr>');
     }
 
+    // Other information
+    if (eventData.event_info)
+    {
+        $sideTable.append('<tr><td colspan="2"><h2 style="'+headingColours.subHeading.style+'">Lisätietoja</h2></td></tr>');
+        $sideTable.append('<tr>'+
+                            '<td colspan="2" class="td-info" style="border-right: none;">'+
+                                this.parseMultiLineText(eventData.event_info)+
+                            '</td>'+
+                          '</tr>');
+    }
+
     $infoContainer.append($sideTable);
     /**
      * End side information table
