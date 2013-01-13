@@ -76,7 +76,7 @@
             <textarea name="event_location">{{ \GenericHelpers\objectVal($event, 'event_location') }}</textarea>
         </td>
         <td>
-            <strong>Casusbelli</strong><br>
+            <strong>Casus belli</strong><br>
             <textarea name="event_casusbelli">{{ \GenericHelpers\objectVal($event, 'event_casusbelli') }}</textarea>
         </td>
         <td>
