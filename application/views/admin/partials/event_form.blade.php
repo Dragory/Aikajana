@@ -36,11 +36,11 @@
     <tr>
         <td>
             <strong>Alkamisaika</strong><br>
-            <input type="text" name="event_time_start" value="{{ \GenericHelpers\objectVal($event, 'event_time_start') }}">
+            <input class="datepicker" type="text" name="event_time_start" value="{{ \GenericHelpers\objectVal($event, 'event_time_start') }}">
         </td>
         <td>
             <strong>Päättymisaika</strong><br>
-            <input type="text" name="event_time_end" value="{{ \GenericHelpers\objectVal($event, 'event_time_end') }}">
+            <input class="datepicker" type="text" name="event_time_end" value="{{ \GenericHelpers\objectVal($event, 'event_time_end') }}">
         </td>
     </tr>
     <tr>
