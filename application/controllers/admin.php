@@ -275,8 +275,8 @@ class Admin_Controller extends ActionFilter\Filter_Controller
 
         $this->setBreadcrumb([
             [URL::to_route('admin_charts'), __('admin.charts_heading')],
-            [URL::to_route('admin_chart', $chart_url), $chart->chart_name],
-            [URL::to_route('admin_group', $id_group), $group->group_name],
+            [URL::to_route('admin_chart', $chart->chart_url), $chart->chart_name],
+            [URL::to_route('admin_group', $group->id_group), $group->group_name],
             [null, 'Lisää tapahtuma']
         ]);
 
@@ -349,8 +349,8 @@ class Admin_Controller extends ActionFilter\Filter_Controller
 
         $this->setBreadcrumb([
             [URL::to_route('admin_charts'), __('admin.charts_heading')],
-            [URL::to_route('admin_chart', $chart_url), $chart->chart_name],
-            [URL::to_route('admin_group', $id_group), $group->group_name],
+            [URL::to_route('admin_chart', $chart->chart_url), $chart->chart_name],
+            [URL::to_route('admin_group', $group->id_group), $group->group_name],
             [null, 'Lisää tapahtuma']
         ]);
 
