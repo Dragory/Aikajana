@@ -238,7 +238,7 @@ class ChartDrawer
                 $bgColor = 'linear-gradient(left,'.
                                               'rgba('.$event->colour_rgb.', 0.7) 0%,'.
                                               'rgba('.$event->colour_rgb.', 0.7) '.(100-$fadePercentage).'%,'.
-                                              'rgba('.$event->colour_rgb.', 0) 0%'.
+                                              'rgba('.$event->colour_rgb.', 0) 100%'.
                                             ');';
             }
 
