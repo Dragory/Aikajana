@@ -40,3 +40,13 @@ p {
 .table-charts form {
     margin: 0;
 }
+
+.option-colour {
+    font-weight: bold;
+    color: #fff;
+    padding: 2px 0;
+}
+
+.table-editable td {
+    padding: 4px;
+}

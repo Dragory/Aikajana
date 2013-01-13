@@ -1,0 +1,790 @@
+<?xml version="1.0" standalone="yes"?>
+<root>
+    <colours>
+        <colour>
+            <id>1</id>
+            <name>Testi</name>
+            <RGB>190,65,35</RGB>
+        </colour>
+        <colour>
+            <id>2</id>
+            <name>Testi2</name>
+            <RGB>240,20,55</RGB>
+        </colour>
+    </colours>
+
+    <groups>
+        <group>
+            <id>1</id>
+            <name>Kansojenväliset sodat</name>
+        </group>
+        <group>
+            <id>2</id>
+            <name>Sisällissodat</name>
+        </group>
+    </groups>
+
+    <!--        
+    <event>
+            <group>0</group>                            // 0 Normaali sota, 1 sisällissota
+            <name>Sodan nimi</name>
+            <shortname>Sod. nimi</shortname>            // Jos tyhjä, ei näy mitään, jos <shortname> ei ollenkaan, näyttää kohdan <name>
+            <start>1.3.1919</start>
+            <start_visible>Epävarma</start_visible>     // Mitä näkyy infoboxissa, jätä pois jos <start>-arvo on oikea
+            <start_unsure />                            // Laita, jos alkamisajankohta hyvin epävarma/alkanut epämääräisesti, muussa tapauksessa jätä pois
+            <end>15.11.1921</end>
+            <end_visible>Epävarma</end_visible>         // Mitä näkyy infoboxissa, jätä pois jos <end>-arvo on oikea
+            <end_unsure />                              // Laita, jos loppumissajankohta hyvin epävarma/alkanut epämääräisesti, muussa tapauksessa jätä pois
+            
+            <location>Siperia</location>
+            <casusbelli>Casus Belli</casusbelli>        // Ei näytetä, jos tyhjä
+            <result>Lopputulos</result>
+            <side1>[xxx] Nimi</side1>
+            <side2>[xxx] Nimi</side2>
+            <strength_side1>Vahvuudet (osapuoli #1)</strength_side1>        // Jos ei tietoa, kirjoita "Ei varmuutta"
+            <strength_side2>Vahvuudet (osapuoli #2)</strength_side2>        // Jos ei tietoa, kirjoita "Ei varmuutta"
+            <dead_side1>Kuolleet (osapuoli #1)</dead_side1>                 // Jos ei tietoa, kirjoita "Ei varmuutta"
+            <dead_side2>Kuolleet (osapuoli #2)</dead_side2>                 // Jos ei tietoa, kirjoita "Ei varmuutta"
+            <injured_side1>Haavoittuneet (osapuoli #1)</injured_side1>      // Jos ei tietoa, kirjoita "Ei varmuutta"
+            <injured_side2>Haavoittuneet (osapuoli #2)</injured_side2>      // Jos ei tietoa, kirjoita "Ei varmuutta"
+            <info>Lisätietoja</info>                    // Ei näytetä, jos tyhjä
+            <colour>R,G,B</colour>                      // Sodan palkin väri taulukossa
+        </event>
+    -->
+
+
+
+    <!--  ==========   KANSOJENVÄLISET SODAT   ==========  -->
+
+
+
+    <events>
+
+        <event>
+            <group>0</group>
+            <name>Englannin ja Arojen valtioliiton sota</name>
+            <shortname></shortname>
+            <start>12.11.1901</start>
+            <start_visible>1901</start_visible>
+            <end>12.04.1902</end>
+            <end_visible>1902</end_visible>
+
+            <start_unsure />
+            <end_unsure />
+            
+            <location>Nykyinen itäinen Nigeria</location>
+            <casusbelli></casusbelli>
+            <result>Arojen valtioliiton tuhoutuminen</result>
+            <side1>[gb] Iso-Britannia</side1>
+            <side2>[ac] Arojen valtioliitto</side2>
+            <strength_side1>n. 1600 miestä</strength_side1>
+            <strength_side2>5000-10000 miestä</strength_side2>
+            <dead_side1>n. 750</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>#Testi</colour> 
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Venäjän-Japanin sota</name>
+            <shortname>Venäjän-Japanin s.</shortname>
+            <start>19.2.1904</start>
+            <end>5.9.1905</end>
+            
+            <location>Keltainenmeri, Mantšuria</location>
+            <casusbelli>Venäjän ja Japanin pyrkimys siirtomaihin, erityisesti Mantšuriaan ja Koreaan</casusbelli>
+            <result>Japanin voitto pakotti Venäjän luopumaan vaatimuksistaan Kiinassa ja mahdollisti japanilaisten laajentumisen</result>
+            <side1>[ru] Venäjän keisarikunta</side1>
+            <side2>[jp] Japanin keisarikunta</side2>
+            <strength_side1>500000 miestä</strength_side1>
+            <strength_side2>300000 miestä</strength_side2>
+            <dead_side1>n. 58000</dead_side1>
+            <dead_side2>n. 83500</dead_side2>
+            <injured_side1>146032</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>#Testi2</colour>
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Italian-Turkin sota</name>
+            <shortname></shortname>
+            <start>29.9.1911</start>
+            <end>18.10.1912</end>
+            
+            <location>Libya</location>
+            <casusbelli>Italian hyökkäys Libyaan</casusbelli>
+            <result>Italian voitto</result>
+            <side1>[it] Italia</side1>
+            <side2>[tr] Osmanien valtakunta</side2>
+            <strength_side1>150000 miestä</strength_side1>
+            <strength_side2>28000 miestä</strength_side2>
+            <dead_side1>3380</dead_side1>
+            <dead_side2>14000</dead_side2>
+            <injured_side1>4220</injured_side1>
+            <injured_side2>5370</injured_side2>
+            <info></info>
+            <colour>190,65,35</colour>  
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Toinen Balkanin sota</name>
+            <shortname></shortname>
+            <start>15.6.1913</start>
+            <end>18.7.1913</end>
+            
+            <location>Balkan</location>
+            <casusbelli></casusbelli>
+            <result>Bulgarian tappio, Bukarestin rauha</result>
+            <side1>[bg] Bulgaria</side1>
+            <side2>
+            <![CDATA[
+                [gr_old] Kreikka<br />[me_old] Montenegro<br />[rs] Serbia<br />[ro] Romania<br />[tr] Osmanien valtakunta
+            ]]>
+            </side2>
+            <strength_side1>500221 – 576878 miestä</strength_side1>
+            <strength_side2>1093802 miestä</strength_side2>
+            <dead_side1>7583</dead_side1>
+            <dead_side2>91000</dead_side2>
+            <injured_side1>42911</injured_side1>
+            <injured_side2>60808</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Ensimmäinen Balkanin sota</name>
+            <shortname></shortname>
+            <start>18.10.1912</start>
+            <end>30.5.1913</end>
+            
+            <location>Balkan</location>
+            <casusbelli></casusbelli>
+            <result>Balkanin liiton voitto, Lontoon rauhansopimus</result>
+            <side1>[tr] Osmanien valtakunta</side1>
+            <side2>
+            <![CDATA[
+                <strong>Balkanin liitto:</strong><br />[bg] Bulgaria<br />[gr_old] Kreikka<br />[me_old] Montenegro<br />[rs] Serbia
+            ]]>
+            </side2>
+            <strength_side1>336742 miestä</strength_side1>
+            <strength_side2>749500 miestä</strength_side2>
+            <dead_side1>125000</dead_side1>
+            <dead_side2>31602</dead_side2>
+            <injured_side1>100000</injured_side1>
+            <injured_side2>70774</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Ensimmäinen maailmansota</name>
+            <start>28.7.1914</start>
+            <end>11.11.1918</end>
+            
+            <location>Eurooppa, Afrikka, jossain määrin myös Tyynimeri ja Lähi-itä</location>
+            <casusbelli>Kilpavarustelu, nationalismi, liittoumat ja aiemmat kiistat. Laukaiseva tekijä oli Franz Ferdinandin salamurha.</casusbelli>
+            <result>Keskusvaltojen tappio</result>
+            <side1>     
+            <![CDATA[
+                <strong>Keskusvallat:</strong><br />[de_old] Saksan keisarikunta<br />[bg] Bulgaria<br />[ah] Itävalta-Unkari<br />[tr] Osmanien valtakunta
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+                <strong>Ympärysvallat:</strong><br />[gb] Iso-Britannia<br />[fr] Ranska<br /> [ru] Venäjän keisarikunta <br />[us] Yhdysvallat<br />[it] Italia<br />
+                [ro] Romania <br />[rs] Serbia<br />[pt] Portugali <br /> [jp] Japani <br /> [be] Belgia <br />[me_old] Montenegro <br />[gr_old] Kreikka <br />[cn_old] Kiina
+            ]]>
+            </side2>
+            <strength_side1>25248321 miestä</strength_side1>
+            <strength_side2>42959850 miestä</strength_side2>
+            <dead_side1>4386000</dead_side1>
+            <dead_side2>5525000</dead_side2>
+            <injured_side1>8388000</injured_side1>
+            <injured_side2>12831500</injured_side2>
+            <info>
+            <![CDATA[
+            Maailmanhistorian toisiksi verisin sota ja ensimmäinen täysimittainen totaalinen sota. Saksan häpeälliseksi kokema Versaillesin rauha, jossa Saksa julistettiin yksin
+            syylliseksi sotaan, kylvi toisen maailmansodan siemenet. <br />Sodan johdosta ja Yhdysvaltojen aloitteesta perustettiin Kansainliitto, YK:n edeltäjä, jonka tehtävä oli turvata rauha
+            tulevaisuudessa. Kansainliitto kuitenkin epäonnistui tavoitteessaan, josta osoituksena toinen maailmansota.
+            ]]>
+            </info>
+            <colour>255,0,0</colour>    
+        </event>
+
+        <event>
+            <group>0</group>
+            <name>Puolan-Neuvosto-Venäjän sota</name>
+            <start>10.3.1919</start>
+            <start_visible>1919</start_visible>
+            <end>15.11.1921</end>
+            <end_visible>1921</end_visible>
+            
+            <location>Itä-Eurooppa</location>
+            <casusbelli></casusbelli>
+            <result>Riian rauha</result>
+            <side1>
+            <![CDATA[
+            [pl] Puola<br /> [ua] Ukrainan kansantasavalta
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+            [su] Neuvosto-Venäjä<br /> [uas] Ukrainan sosialistinen neuvostotasavalta
+            ]]>
+            </side2>
+            <strength_side1>738000 miestä</strength_side1>
+            <strength_side2>800000 miestä</strength_side2>
+            <dead_side1>48000</dead_side1>
+            <dead_side2>60000</dead_side2>
+            <injured_side1>113518</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Heimosodat Karjalassa</name>
+            <start>1.2.1918</start>
+            <start_visible>1918</start_visible>
+            <start_unsure />
+            <end>1.10.1922</end>
+            <end_visible>1922</end_visible>
+            <end_unsure />
+            
+            <location>Viro, Itä-Karjala, Petsamo, Inkerinmaa</location>
+            <casusbelli>Heimoaate, antibolševismi, Suur-Suomi-aate</casusbelli>
+            <result>Viron vapaussota päättyi Viron voittoon, bolševikkien valta Aunuksessa vahvistui, bolševikit kukistivat inkeriläisten kansannousun ja itäkarjalaisten kansannousun,
+            Suomeen siirtyi vajaa 20 000 itäkarjalaista</result>
+            <side1>Suomalaiset ja itäkarjalaiset sissijoukot</side1>
+            <side2>
+            <![CDATA[[su] Neuvosto-Venäjä<br /> [gb] Iso-Britannia
+            ]]>
+            </side2>
+            <strength_side1>Ei varmuutta</strength_side1>
+            <strength_side2>Ei varmuutta</strength_side2>
+            <dead_side1>Ei varmuutta</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Latvian vapaussota</name>
+            <shortname>Latvian vapauss.</shortname>
+            <start>16.11.1918</start>
+            <end>1.2.1920</end>
+            
+            <location>Latvia</location>
+            <casusbelli></casusbelli>
+            <result>Latvian voitto</result>
+            <side1>
+            <![CDATA[
+            [lv] Latvia <br />[ee] Viro <br />[pl] Puola <br />[gb] Iso-Britannia
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+            [su] Neuvosto-Venäjä <br />[su] Latvian sosialistinen tasavalta <br />[bl] Baltian yhdistynyt herttuakunta
+            ]]>
+            </side2>
+            <strength_side1>85232</strength_side1>
+            <strength_side2>26000</strength_side2>
+            <dead_side1>3346</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>4885</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Rifin sota</name>
+            <start>12.6.1920</start>
+            <end>12.5.1926</end>
+            
+            <location>Pohjois-Marokko</location>
+            <casusbelli></casusbelli>
+            <result>Espanjan ja Ranskan voitto, Rifin valtakunnan hajoaminen</result>
+            <side1>
+            <![CDATA[
+            [es] Espanja <br />[fr] Ranska
+            ]]>
+            </side1>
+            <side2>[ri] Rifin tasavalta</side2>
+            <strength_side1>
+            <![CDATA[
+            465000 miestä<br /> yli 150 lentokonetta
+            ]]>
+            </strength_side1>
+            <strength_side2>80000 miestä</strength_side2>
+            <dead_side1>10000</dead_side1>
+            <dead_side2>2000</dead_side2>
+            <injured_side1>21000</injured_side1>
+            <injured_side2>13400</injured_side2>
+            <info></info>
+            <colour>190,65,35</colour>  
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Viron vapaussota</name>
+            <start>28.11.1918</start>
+            <end>2.2.1920</end>
+            
+            <location>Viro, Inkeri, Pihkovan alue, Pohjois-Latvia</location>
+            <casusbelli></casusbelli>
+            <result>Viron voitto</result>
+            <side1>
+            <![CDATA[
+            [ee] Viro <br />[ru] Venäjän valkoinen armeija <br />Iso-Britannian laivasto  <br />Suomalaiset, tanskalaiset ja ruotsalaiset vapaaehtoiset
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+            [su] Neuvosto-Venäjä <br />[ees] Viron työkansan kommuuni <br />[bl] Baltian yhdistynyt herttuakunta
+            ]]>
+            </side2>
+            <strength_side1>81800 miestä</strength_side1>
+            <strength_side2>160000 miestä</strength_side2>
+            <dead_side1>6000</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>16500</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Liettuan vapaussodat</name>
+            <shortname>Liettuan vapauss.</shortname>
+            <start>8.12.1918</start>
+            <end>7.4.1920</end>
+            
+            <location>Liettua</location>
+            <casusbelli></casusbelli>
+            <result>Liettuan voitto</result>
+            <side1>[lt] Liettua</side1>
+            <side2>
+            <![CDATA[
+            [su] Neuvosto-Venäjä <br />[su] Liettuan sosialistinen tasavalta <br />[pl] Puola
+            ]]>
+            </side2>
+            <strength_side1>Ei varmuutta</strength_side1>
+            <strength_side2>Ei varmuutta</strength_side2>
+            <dead_side1>Ei varmuutta</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info>Jakaantuu kolmeen erilliseen sotaan, jotka käytiin välillä joulukuu 1918 - elokuu 1919 (Neuvosto-Venäjää vastaan), heinäkuu 1919 - joulukuu 1919 (venäläisiä vapaaehtoisjoukkoja
+            vastaan sekä syyskuu 1920 - lokakuu 1920 (Puolaa vastaan).</info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Irlannin vapaussota</name>
+            <start>21.1.1919</start>
+            <end>11.7.1921</end>
+            
+            <location>Irlanti</location>
+            <casusbelli></casusbelli>
+            <result>Irlannin itsenäistyminen, Irlannin ja Pohjois-Irlannin jakaantuminen</result>
+            <side1>[ie] Irlanti</side1>
+            <side2>[gb] Iso-Britannia</side2>
+            <strength_side1>15000 miestä</strength_side1>
+            <strength_side2>42100 miestä</strength_side2>
+            <dead_side1>550</dead_side1>
+            <dead_side2>714</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Turkin itsenäisyyssota</name>
+            <start>19.5.1919</start>
+            <end>11.10.1922</end>
+            
+            <location>Turkki, Traakia</location>
+            <casusbelli></casusbelli>
+            <result>Turkin voitto</result>
+            <side1>[tr] Turkki</side1>
+            <side2>
+            <![CDATA[
+            [gr_old] Kreikka <br />[fr] Ranska <br />[am] Armenia <br />[gb] Iso-Britannia <br />[it] Italia
+            ]]>
+            </side2>
+            <strength_side1>350000 miestä</strength_side1>
+            <strength_side2>395050 miestä</strength_side2>
+            <dead_side1>37975</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>31173</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Toinen maailmansota</name>
+            <start>1.9.1939</start>
+            <end>2.9.1945</end>
+            
+            <location>Eurooppa, Pohjois-Afrikka, Tyynimeri, Kaakkois-Aasia, Kiina</location>
+            <casusbelli>Saksan hyökkäys Puolaan</casusbelli>
+            <result>Liittoutuneiden voitto, kylmän sodan alku</result>
+            <side1>     
+            <![CDATA[
+                <strong>Liittoutuneet:</strong><br />[su] Neuvostoliitto<br />[gb] Iso-Britannia<br />[us] Yhdysvallat<br />[fr] Ranska<br />[pl] Puola<br />[ca_old] Kanada<br />[au] Australia
+                <br />[za_old] Etelä-Afrikan unioni<br />[tw] Kiina
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+                <strong>Akselivallat ja niiden liittolaiset:</strong><br />[den] Natsi-Saksa<br />[jp] Japani<br /> [it] Italia <br />[hu] Unkari<br />[ro] Romania<br />
+                [bg] Bulgaria <br />[fi] Suomi<br /><br />[su] Neuvostoliitto<br />(1939-1941) 
+            ]]>
+            </side2>
+            <strength_side1>Ei varmuutta</strength_side1>
+            <strength_side2>Ei varmuutta</strength_side2>
+            <dead_side1>16000000</dead_side1>
+            <dead_side2>8000000</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info>
+            <![CDATA[
+            Maailmanhistorian verisin sota, jossa kokeiltiin uudenlaista sodankäyntiä, suoritettiin valtavia ilmapommituksia ja sorruttiin holokaustin tapaisiin hirmutekoihin.<br /><br />
+            Yhteensä sodassa kuoli siviilit mukaan lukien yli <br />73 000 000 ihmistä.
+            ]]>
+            </info>
+            <colour>255,0,0</colour>    
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Indokiinan sota</name>
+            <start>19.12.1946</start>
+            <end>1.8.1954</end>
+
+            <location>Kaakkois-Aasia</location>
+            <casusbelli></casusbelli>
+            <result>Ranskan vetäytyminen, Indokiinan vapautuminen siirtomaavallasta</result>
+            <side1>[fr] Ranksa</side1>
+            <side2>[vn] Pohjois-Vietnam</side2>
+            <strength_side1>400000</strength_side1>
+            <strength_side2>450000</strength_side2>
+            <dead_side1>75581</dead_side1>
+            <dead_side2>300000</dead_side2>
+            <injured_side1>64127</injured_side1>
+            <injured_side2>500000</injured_side2>
+            <info></info>
+            <colour>240,20,55</colour>  
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Indonesian itsenäisyyssota</name>
+            <start>17.8.1945</start>
+            <end>31.12.1949</end>
+            
+            <location>Indonesia</location>
+            <casusbelli></casusbelli>
+            <result>Indonesian itsenäisyys</result>
+            <side1>[id] Indonesia</side1>
+            <side2>
+            <![CDATA[
+            [nl] Alankomaat <br />[gb] Iso-Britannia
+            ]]>
+            </side2>
+            <strength_side1>Ei varmuutta</strength_side1>
+            <strength_side2>180000</strength_side2>
+            <dead_side1>Ei varmuutta</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>240,20,55</colour>  
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Israelin itsenäisyyssota</name>
+            <shortname></shortname>
+            <start>15.4.1948</start>
+            <end>10.3.1949</end>
+            
+            <location>Israel</location>
+            <casusbelli></casusbelli>
+            <result>Israelin voitto</result>
+            <side1>[il] Israel</side1>
+            <side2>
+            <![CDATA[
+            [eg] Egypti <br />[sy] Syyria <br />[iq] Irak<br />[lb] Libanon <br />[sa] Saudi-Arabia <br />[ye] Jemen
+            ]]>
+            </side2>
+            <strength_side1>115000</strength_side1>
+            <strength_side2>54000</strength_side2>
+            <dead_side1>4000</dead_side1>
+            <dead_side2>11000</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>145,10,10</colour>  
+        </event>
+        
+        <event>
+            <group>0</group>
+            <name>Korean sota</name>
+            <start>25.6.1950</start>
+            <end>27.7.1953</end>
+            
+            <location>Korean niemimaa</location>
+            <casusbelli></casusbelli>
+            <result>Aselepo, rajalinja säilyi jokseenkin samana.</result>
+            <side1>
+            <![CDATA[
+            [kr] Korean tasavalta <br />[us] Yhdysvallat <br />[un] Yhdistyneet Kansakunnat
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+            [kp] Pohjois-Korea <br />[cn] Kiina <br />[su] Neuvostoliitto
+            ]]>
+            </side2>
+            <strength_side1>941600</strength_side1>
+            <strength_side2>1212000</strength_side2>
+            <dead_side1>178569</dead_side1>
+            <dead_side2>367282</dead_side2>
+            <injured_side1>555022</injured_side1>
+            <injured_side2>787000</injured_side2>
+            <info>Sodassa kuoli tai loukkaantui lisäksi yli 2,5 miljoonaa siviiliä.</info>
+            <colour>240,20,55</colour>  
+        </event>
+        
+        
+
+
+
+
+
+        
+    <!--  ==========   SISÄLLISSODAT   ==========  -->
+
+
+
+
+
+
+
+
+        <event>
+            <group>1</group>
+            <name>Venäjän sisällissota</name>
+            <start>9.11.1917</start>
+            <end>20.10.1922</end>
+            <end_visible>lokakuu 1922</end_visible> 
+            
+            <location>Venäjä, Persia, Mongolia, Keski-Aasia</location>
+            <casusbelli></casusbelli>
+            <result>Puna-armeijan voitto</result>
+            <side1>[ru] Venäjän valkoinen armeija, ympärysvaltojen interventiojoukot</side1>
+            <side2>[su] Neuvosto-Venäjä</side2>
+            <strength_side1>2555000 miestä</strength_side1>
+            <strength_side2>3000000 miestä</strength_side2>
+            <dead_side1>2500000</dead_side1>
+            <dead_side2>1212824 </dead_side2>
+            <injured_side1>3500000</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,150,0</colour>  
+        </event>
+        
+            <event>
+            <group>1</group>
+            <name>Suomen sisällissota</name>
+            <shortname></shortname>
+            <start>27.1.1918</start>
+            <end>16.5.1918</end>
+            
+            <location>Suomi</location>
+            <casusbelli></casusbelli>
+            <result>Valkoisten voitto</result>
+            <side1>[fir] Punainen Suomi</side1>
+            <side2>[fiw] Valkoinen Suomi</side2>
+            <strength_side1>
+            <![CDATA[
+            80000 - 90000 suomalaista<br />
+            7000 - 10000 venäläistä (ei samanaikaisesti)
+            ]]>
+            </strength_side1>
+            <strength_side2>
+            <![CDATA[
+            80000 - 90000 suomalaista<br />
+            14000 - 15000 saksalaista
+            ]]>
+            </strength_side2>
+            <dead_side1>28288</dead_side1>
+            <dead_side2>5358</dead_side2>
+            <injured_side1>n. 11000</injured_side1>
+            <injured_side2>n. 7500</injured_side2>
+            <info>Punaisia kuoli teloituksien,terrorin ja vankileirien huonojen olojen takia enemmän kuin varsinaisissa taisteluissa. Valkoisia kaatui eniten taisteluissa.</info>
+            <colour>255,150,0</colour>  
+        </event>
+        
+        <event>
+            <group>1</group>
+            <name>Irlannin sisällissota</name>
+            <shortname></shortname>
+            <start>28.6.1922</start>
+            <end>24.5.1923</end>
+            
+            <location>Irlanti</location>
+            <casusbelli></casusbelli>
+            <result>Irlannin vapaavaltiosopimuksen vahvistuminen</result>
+            <side1>[ie] Vapaavaltion kannattajat</side1>
+            <side2>[ie] Vapaavaltion vastustajat</side2>
+            <strength_side1>
+            <![CDATA[
+            58500 miestä<br />
+            10 lentokonetta<br />
+            1 laiva
+            ]]>
+            </strength_side1>
+            <strength_side2>15000 miestä</strength_side2>
+            <dead_side1>n. 800</dead_side1>
+            <dead_side2>n. 2000</dead_side2>
+            <injured_side1>n. 11000</injured_side1>
+            <injured_side2>n. 7500</injured_side2>
+            <info>Enemmän kuolonuhreja kuin aikasemmassa Irlannin vapaussodassa</info>
+            <colour>255,150,0</colour>  
+        </event>
+        
+        <event>
+            <group>1</group>
+            <name>Kiinan sisällissota</name>
+            <start>15.4.1927</start>
+            <start_visible>Huhtikuu 1927</start_visible>    
+            <end>15.5.1950</end>
+            <end_visible>toukokuu 1950</end_visible>
+            
+            <location>Kiina</location>
+            <casusbelli></casusbelli>
+            <result>Kommunistien voitto, Kiinan kansantasavallan synty</result>
+            <side1>
+            <![CDATA[
+            [cnn] Kiinan nationalistipuolue <br />
+            [tw] Kiinan tasavalta
+            ]]>
+            </side1>
+            <side2>[cn] Kiinan kommunistinen puolue</side2>
+            <strength_side1>3600000 miestä</strength_side1>
+            <strength_side2>2800000 miestä</strength_side2>
+            <dead_side1>Ei varmuutta</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info>Rauhaa ei ole koskaan solmittu, joten sota on periaatteessa edelleen käynnissä.</info>
+            <colour>240,160,90</colour> 
+        </event>
+        
+            <event>
+            <group>1</group>
+            <name>Espanjan sisällissota</name>
+            <start>17.7.1936</start>    
+            <end>1.4.1939</end> 
+            
+            <location>Espanja, Marokko, Baleaarit, Kanariansaaret, Espanjan Guinea</location>
+            <casusbelli></casusbelli>
+            <result>Kansallismielisten voitto, Francisco Francon diktatuuri alkaa</result>
+            <side1>
+            <![CDATA[
+            [esr] Tasavaltalaiset <br />
+            [su] Neuvostoliitto <br />
+            [mx] Meksiko <br />
+            [esr] Kansainväliset prikaatit
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+            [es] Kansallismieliset <br />
+            [den] Natsi-Saksa <br />
+            [it] Italia <br />
+            [pt] Portugali
+            ]]>
+            </side2>
+            <strength_side1>
+            <![CDATA[
+            450000 miestä <br />
+            350 lentokonetta <br />
+            200 tykistöpatteria
+            ]]>
+            </strength_side1>
+            <strength_side2>
+            <![CDATA[
+            600000 miestä <br />
+            600 lentokonetta <br />
+            290 tykistöpatteria
+            ]]>
+            </strength_side2>
+            <dead_side1>Ei varmuutta</dead_side1>
+            <dead_side2>Ei varmuutta</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info>Pablo Picasso maalasi Guernican kaupunkiin kohdistuneista Saksan lentopommituksista yhden kuuluisimmista maalauksistaan "Guernica".</info>
+            <colour>255,150,0</colour>  
+        </event>
+        
+        <event>
+            <group>1</group>
+            <name>Kreikan sisällissota</name>
+            <start>15.12.1944</start>
+            <start_visible>Joulukuu 1944</start_visible>            
+            <end>16.10.1949</end>           
+            
+            <location>Kreikka</location>
+            <casusbelli></casusbelli>
+            <result>Kansallisen armeijan voitto</result>
+            <side1>
+            <![CDATA[
+            [gr_old] Kreikan kuningaskunta <br />
+            [gb] Iso-Britannia <br />
+            [us] Yhdysvallat
+            ]]>
+            </side1>
+            <side2>
+            <![CDATA[
+            [su] Kreikan kommunistinen puolue <br />
+            [su] Neuvostoliitto <br />
+            [yu] Jugoslavia <br />
+            [bg] Bulgaria <br />
+            [al] Albania
+            ]]>
+            </side2>
+            <strength_side1>232500 miestä</strength_side1>
+            <strength_side2>100000 miestä</strength_side2>
+            <dead_side1>16753</dead_side1>
+            <dead_side2>38839</dead_side2>
+            <injured_side1>Ei varmuutta</injured_side1>
+            <injured_side2>Ei varmuutta</injured_side2>
+            <info></info>
+            <colour>255,150,0</colour>  
+        </event>
+        
+    </events>
+</root>

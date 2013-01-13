@@ -1,4 +1,4 @@
-<table style="width: 50%;">
+<table class="table-editable" style="width: 50%;">
     <tr>
         <td>
             <strong>Ryhmän nimi</strong><br>

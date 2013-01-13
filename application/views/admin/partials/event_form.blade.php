@@ -1,4 +1,4 @@
-<table style="width: 80%;">
+<table class="table-editable" style="width: 80%;">
     <tr>
         <td style="vertical-align: top;">
             <strong>Tapahtuman nimi</strong><br>
@@ -10,7 +10,20 @@
         </td>
         <td style="vertical-align: top;">
             <strong>Väri</strong><br>
-            <input class="colorpicker" style="width: auto;" type="text" name="event_colour" value="{{ \GenericHelpers\objectVal($event, 'event_colour') }}">
+            <select name="id_colour">
+<?php
+    foreach ($colours as $colour)
+    {
+        echo '<option'.
+                ' class="option-colour"'.
+                ' style="background-color: '.$colour->colour_hex.';"'.
+                ($colour->id_colour == $event->id_colour ? ' selected="selected"' : '').
+                ' value="'.$colour->id_colour.'">'.
+                $colour->colour_name.
+             '</option>';
+    }
+?>
+            </select>
             <label>
                 <input type="hidden" name="event_colour_inherit" value="0">
                 <input type="checkbox" name="event_colour_inherit" value="1"{{ (\GenericHelpers\objectVal($event, 'event_colour_inherit') ? ' checked="checked"' : '') }}> Käytä ryhmän väriä

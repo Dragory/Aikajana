@@ -27,8 +27,8 @@
 <?php
     foreach ($groups as $group)
     {
-        $eventUrl = URL::to_route('admin_group', [$chart->chart_url, $group->id_group]);
-        $deleteUrl = URL::to_route('admin_group_delete', [$chart->chart_url, $group->id_group]);
+        $eventUrl = URL::to_route('admin_group', $group->id_group);
+        $deleteUrl = URL::to_route('admin_group_delete', $group->id_group);
 
         echo '<tr>'.
                 '<td><a href="'.$eventUrl.'">'.$group->group_name.'</a></td>'.
@@ -45,7 +45,7 @@
         </tbody>
     </table>
 
-    <a href="{{ URL::to_route('admin_group_add', [$chart->chart_url]) }}">
+    <a href="{{ URL::to_route('admin_group_add', $chart->chart_url) }}">
         <button class="btn btn-primary">{{ __('admin.chart_add_group') }}</button>
     </a>
 </div>

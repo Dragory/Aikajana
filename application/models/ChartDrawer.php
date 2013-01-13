@@ -159,8 +159,11 @@ class ChartDrawer
         {
             if ($year % 10 != 0) continue;
 
+            if ($year % 100 == 0) $decadeClass = 'chart-decade-large';
+            else $decadeClass = 'chart-decade-small';
+
             $yearsFromStart = $year - $this->startYear;
-            $return .= '<div class="chart-decade" style="left: '.($yearsFromStart * $this->yearWidth).'px">'.$year.'</div>';
+            $return .= '<div class="chart-decade '.$decadeClass.'" style="left: '.($yearsFromStart * $this->yearWidth).'px">'.$year.'-luku</div>';
         }
 
         return $return;
@@ -192,8 +195,62 @@ class ChartDrawer
 
         foreach ($this->events as &$event)
         {
+            // If we're supposed to inherit our colours from the group, do so
             if ($event->event_colour_inherit == 1)
-                $event->event_colour = $this->groupsById[$event->id_group]->group_colour;
+            {
+                $event->colour_hex = $this->groupsById[$event->id_group]->group_colour;
+                $event->colour_rgb = $this->groupsById[$event->id_group]->group_colour_rgb;
+            }
+
+            $fullBgColor = 'background-color: rgba('.$event->colour_rgb.', 0.7);';
+
+            // See if we have a "custom", shorter name to display
+            if (!empty($event->event_name_short)) $displayName = $event->event_name_short;
+            else $displayName = $event->event_name;
+
+            // Is the start or end unsure?
+            // That would mean we would need to use a gradient.
+
+            // Always fade for 120 pixels unless the event is thinner than that
+            $fadePercentage = round(120/$event->event_px_width*100);
+            if ($fadePercentage > 50) $fadePercentage = '20';
+
+            if ($event->event_start_unsure && $event->event_end_unsure)
+            {
+
+                $bgColor = 'linear-gradient(left,'.
+                                              'rgba('.$event->colour_rgb.', 0) 0%,'.
+                                              'rgba('.$event->colour_rgb.', 0.7) '.$fadePercentage.'%,'.
+                                              'rgba('.$event->colour_rgb.', 0.7) '.(100-$fadePercentage).'%,'.
+                                              'rgba('.$event->colour_rgb.', 0) 100%'.
+                                            ');';
+            }
+            elseif ($event->event_start_unsure)
+            {
+                $bgColor = 'linear-gradient(left,'.
+                                              'rgba('.$event->colour_rgb.', 0) 0%,'.
+                                              'rgba('.$event->colour_rgb.', 0.7) '.$fadePercentage.'%,'.
+                                              'rgba('.$event->colour_rgb.', 0.7) 100%'.
+                                            ');';
+            }
+            elseif ($event->event_end_unsure)
+            {
+                $bgColor = 'linear-gradient(left,'.
+                                              'rgba('.$event->colour_rgb.', 0.7) 0%,'.
+                                              'rgba('.$event->colour_rgb.', 0.7) '.(100-$fadePercentage).'%,'.
+                                              'rgba('.$event->colour_rgb.', 0) 0%'.
+                                            ');';
+            }
+
+            // If we went the gradient route, also add browser prefixes
+            if ($event->event_start_unsure || $event->event_end_unsure)
+            {
+                $fullBgColor .= 'background: -webkit-'.$bgColor;
+                $fullBgColor .= 'background: -moz-'.$bgColor;
+                $fullBgColor .= 'background: -ms-'.$bgColor;
+                $fullBgColor .= 'background: -o-'.$bgColor;
+                $fullBgColor .= 'background: '.$bgColor;
+            }
 
             $return .= '<div class="chart-event"'.
                         ' data-id-group="'.$event->id_group.'"'.
@@ -202,10 +259,11 @@ class ChartDrawer
                                 'top: '.   $event->event_px_y.'px;'.
                                 'width: '. $event->event_px_width.'px;'.
                                 'height: '.$event->event_px_height.'px;'.
-                                'background-color: '.$event->event_colour.';'.
+                                'background-color: '.$event->colour_hex.';'. // Fallback for some browsers
+                                $fullBgColor.
                           '"'.
                        '>'.
-                        $event->event_name.
+                        $displayName.
                        '</div>';
         }
 
@@ -257,7 +315,9 @@ class ChartDrawer
                                 '</div>'.
                             '</div>'.
                         '</div>'.
-                        '<div class="chart-info"></div>'.
+                        '<div class="chart-info">'.
+                            '<div class="chart-info-help">Napsauta sotaa aikajanalla saadaksesi siitä lisätietoja</div>'.
+                        '</div>'.
                    '</div>'.
                    '<script type="text/javascript">'.
                         'charts.push('.json_encode(['id' => 'chart-'.$chartNum, 'events' => $this->events, 'groups' => $this->groups]).');'.

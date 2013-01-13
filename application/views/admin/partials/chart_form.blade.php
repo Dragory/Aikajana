@@ -1,18 +1,18 @@
-<table style="width: 50%;">
+<table class="table-editable" style="width: 50%;">
     <tr>
-        <td>
+        <td colspan="2">
             <strong>Kaavion nimi</strong><br>
             <input type="text" name="chart_name" value="{{ \GenericHelpers\objectVal($chart, 'chart_name')}}">
         </td>
-        <td>
-            <strong>Lyhenne</strong><br>
-            <input type="text" name="chart_name_short" value="{{ \GenericHelpers\objectVal($chart, 'chart_name_short')}}">
-        </td>
     </tr>
     <tr>
-        <td colspan="2">
-            <strong>Osoitteessa näkyvä nimi</strong><br>
-            <input type="text" name="chart_url" value="{{ \GenericHelpers\objectVal($chart, 'chart_name')}}">
+        <td>
+            <strong>Nimi valikossa</strong><br>
+            <input type="text" name="chart_name_short" value="{{ \GenericHelpers\objectVal($chart, 'chart_name_short')}}">
+        </td>
+        <td>
+            <strong>Nimi osoitteessa</strong><br>
+            <input type="text" name="chart_url" value="{{ \GenericHelpers\objectVal($chart, 'chart_url')}}">
         </td>
     </tr>
     <tr>

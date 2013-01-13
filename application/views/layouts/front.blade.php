@@ -22,6 +22,11 @@
 
     </div>
 
+    <script type="text/javascript">
+        var imgUrl = '{{ asset('img') }}';
+        var jsUrl  = '{{ asset('js') }}';
+        var cssUrl = '{{ asset('css') }}';
+    </script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script type="text/javascript" src="{{ asset('js/chart.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>

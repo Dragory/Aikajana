@@ -57,22 +57,32 @@ Route::post('/admin/chart_add_post', ['as' => 'admin_chart_add_post', 'uses' => 
 Route::post('/admin/chart/(:any)/delete', ['as' => 'admin_chart_delete', 'uses' => 'admin@chart_delete', 'before' => 'csrf']);
 
 // Groups
-Route::get('/admin/chart/(:any)/(:num)',            ['as' => 'admin_group', 'uses' => 'admin@group']);
-Route::post('/admin/chart/(:any)/(:num)/save_post', ['as' => 'admin_group_save_post', 'uses' => 'admin@group_save_post', 'before' => 'csrf']);
+Route::get('/admin/group/(:num)',            ['as' => 'admin_group', 'uses' => 'admin@group']);
+Route::post('/admin/group/(:num)/save_post', ['as' => 'admin_group_save_post', 'uses' => 'admin@group_save_post', 'before' => 'csrf']);
 
-Route::get('/admin/chart/(:any)/add',       ['as' => 'admin_group_add', 'uses' => 'admin@group_add']);
-Route::post('/admin/chart/(:any)/add_post', ['as' => 'admin_group_add_post', 'uses' => 'admin@group_add_post', 'before' => 'csrf']);
+// These are under charts because it's added "to" a chart
+Route::get('/admin/chart/(:any)/group_add',       ['as' => 'admin_group_add', 'uses' => 'admin@group_add']);
+Route::post('/admin/chart/(:any)/group_add_post', ['as' => 'admin_group_add_post', 'uses' => 'admin@group_add_post', 'before' => 'csrf']);
 
-Route::post('/admin/chart/(:any)/(:num)/delete', ['as' => 'admin_group_delete', 'uses' => 'admin@group_delete', 'before' => 'csrf']);
+Route::post('/admin/group/(:num)/delete', ['as' => 'admin_group_delete', 'uses' => 'admin@group_delete', 'before' => 'csrf']);
 
 // Events
-Route::get('/admin/chart/(:any)/(:num)/(:num)',            ['as' => 'admin_event', 'uses' => 'admin@event']);
-Route::post('/admin/chart/(:any)/(:num)/(:num)/save_post', ['as' => 'admin_event_save_post', 'uses' => 'admin@event_save_post', 'before' => 'csrf']);
+Route::get('/admin/event/(:num)',            ['as' => 'admin_event', 'uses' => 'admin@event']);
+Route::post('/admin/event/(:num)/save_post', ['as' => 'admin_event_save_post', 'uses' => 'admin@event_save_post', 'before' => 'csrf']);
 
-Route::get('/admin/chart/(:any)/(:num)/add',        ['as' => 'admin_event_add', 'uses' => 'admin@event_add']);
-Route::post('/admin/chart/(:any)/(:num)/add_post',  ['as' => 'admin_event_add_post', 'uses' => 'admin@event_add_post', 'before' => 'csrf']);
+Route::get('/admin/group/(:num)/event_add',       ['as' => 'admin_event_add', 'uses' => 'admin@event_add']);
+Route::post('/admin/group/(:num)/event_add_post', ['as' => 'admin_event_add_post', 'uses' => 'admin@event_add_post', 'before' => 'csrf']);
 
-Route::post('/admin/chart/(:any)/(:num)/(:num)/delete', ['as' => 'admin_event_delete', 'uses' => 'admin@event_delete', 'before' => 'csrf']);
+Route::post('/admin/event/(:num)/delete', ['as' => 'admin_event_delete', 'uses' => 'admin@event_delete', 'before' => 'csrf']);
+
+// Colours
+Route::get('/admin/colour/(:num)',            ['as' => 'admin_colour', 'uses' => 'admin@colour']);
+Route::post('/admin/colour/(:num)/save_post', ['as' => 'admin_colour_save_post', 'uses' => 'admin@colour_save_post', 'before' => 'csrf']);
+
+Route::get('/admin/group/(:num)/colour_add',       ['as' => 'admin_colour_add', 'uses' => 'admin@colour_add']);
+Route::post('/admin/group/(:num)/colour_add_post', ['as' => 'admin_colour_add_post', 'uses' => 'admin@colour_add_post', 'before' => 'csrf']);
+
+Route::post('/admin/colour/(:num)/delete', ['as' => 'admin_colour_delete', 'uses' => 'admin@colour_delete', 'before' => 'csrf']);
 
 /*
 |--------------------------------------------------------------------------
