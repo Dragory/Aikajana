@@ -341,6 +341,9 @@ Chart.prototype.parseMultiLineText = function(text)
     // Turn newlines into line breaks
     formattedText = formattedText.replace(/\n/gi, '<br>');
 
+    // Format numbers
+    formattedText = formattedText.replace(/[0-9,.]{4,}/gi, this.formatNumber);
+
     // Turn bracketed, two-character strings into images for flags
     formattedText = formattedText.replace(
         /\[([A-Za-z_-]{2,8})\]/gi,
@@ -349,6 +352,44 @@ Chart.prototype.parseMultiLineText = function(text)
 
     // Return the formatted text
     return formattedText;
+};
+
+Chart.prototype.formatNumber = function(number)
+{
+    var integer = number;
+    var decimals = '';
+
+    var formattedNumber = '';
+
+    // If we have decimals, separate those from the integer
+    if (number.indexOf('.') >= 0 || number.indexOf(',') >= 0)
+    {
+        var parts = number.split(/[,.]/gi);
+        decimals = parts.pop();
+        integer = parts.pop();
+    }
+
+    // Format the integer
+    var loopNum = 0;
+    for (var i = integer.length - 1; i >= 0; i--)
+    {
+        if (loopNum == 3)
+        {
+            formattedNumber += ' ';
+            loopNum = 0;
+        }
+
+        formattedNumber += integer[i];
+        loopNum++;
+    }
+
+    // Because we were looping through the number in reverse,
+    // reverse the formatted number and add decimals if there are any.
+    formattedNumber = formattedNumber.split('').reverse().join('');
+    if (decimals != '') formattedNumber += ',' + decimals;
+
+    // Return the number
+    return formattedNumber;
 };
 
 Chart.prototype.startScroll = function(scrollSpeed)
