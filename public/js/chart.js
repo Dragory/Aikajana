@@ -278,8 +278,8 @@ Chart.prototype.showInfo = function(id_event)
     {
         $sideTable.append('<tr><td colspan="2"><h2 style="'+headingColours.subHeading.style+'">Osapuolet</h2></td></tr>');
         $sideTable.append('<tr>'+
-                            '<td class="td-info">'+this.parseMultiLineText(eventData.event_side1)+'</td>'+
-                            '<td class="td-info">'+this.parseMultiLineText(eventData.event_side2)+'</td>'+
+                            '<td class="td-info">'+this.parseMultiLineText(eventData.event_side1, false)+'</td>'+
+                            '<td class="td-info">'+this.parseMultiLineText(eventData.event_side2, false)+'</td>'+
                           '</tr>');
     }
 
@@ -342,8 +342,12 @@ Chart.prototype.showInfo = function(id_event)
  * @param  {string} text The text to parse
  * @return {string}      The formatted text
  */
-Chart.prototype.parseMultiLineText = function(text)
+Chart.prototype.parseMultiLineText = function(text, formatNumbers)
 {
+    // Format numbers by default
+    if (formatNumbers == undefined) formatNumbers = true;
+
+    // A temporary version of the formatted text
     var formattedText = text;
 
     // Escape HTML
@@ -353,7 +357,8 @@ Chart.prototype.parseMultiLineText = function(text)
     formattedText = formattedText.replace(/\n/gi, '<br>');
 
     // Format numbers
-    formattedText = formattedText.replace(/[0-9,.]{4,}/gi, this.formatNumber);
+    if (formatNumbers)
+        formattedText = formattedText.replace(/[0-9,.]{4,}/gi, this.formatNumber);
 
     // Turn bracketed, two-character strings into images for flags
     formattedText = formattedText.replace(
