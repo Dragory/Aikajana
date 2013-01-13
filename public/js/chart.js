@@ -343,7 +343,7 @@ Chart.prototype.parseMultiLineText = function(text)
 
     // Turn bracketed, two-character strings into images for flags
     formattedText = formattedText.replace(
-        /\[([A-Za-z]{2,8})\]/gi,
+        /\[([A-Za-z_-]{2,8})\]/gi,
         '<div class="flag flag-$1"></div>'
     );
 
