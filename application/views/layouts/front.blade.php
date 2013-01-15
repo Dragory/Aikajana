@@ -6,6 +6,7 @@
     <title>Aikajana</title>
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/flags.css') }}">
 </head>
 <body>
     <script type="text/javascript">
