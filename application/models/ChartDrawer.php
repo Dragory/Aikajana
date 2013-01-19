@@ -12,7 +12,7 @@ class ChartDrawer
             $chartWidth, $chartHeight,
 
             // Line height, line padding and the padding between two groups.
-            $lineHeight = 20, $linePadding = 4, $groupPadding = 100,
+            $lineHeight = 20, $linePadding = 4, $groupPadding = 24,
 
             // Arrays containing the groups and events of the chart
             $events = [], $groups = [], $groupsById = [], $eventsByGroupId = [];
